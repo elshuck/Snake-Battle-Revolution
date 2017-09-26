@@ -1,2 +1,5 @@
 # Snake-Battle-Revolution
-Prueba de Alberto
+Se trata de un snake, juego arcade, de dos o más jugadores que compiten por conseguir una puntuación antes que sus oponentes. Tenemos pensado que los jugadores se puedan chocar y perder. Como en el snake, cada vez que un jugador come, gana longitud.Habrá una fruta(comida) menos que el número máximo de jugadores para que haya posibilidad de no comer. Una vez que un jugador gana, o todos los demás pierden se muestra el ranking de cómo han quedado en la partida. De manera opcional podemos meter frutas especiales que den bonus de velocidad o invulnerabilidad. 
+Alberto Egea García        a.egeag@alumnos.urjc.es           Makimoki70
+Jorge Luis Torres Redondo  jl.torresr@alumnos.urjc.es        elshuck
+Gabriel Muñoz Borchers     g.munozbo@alumnos.urjc.es         gabrielmubo
