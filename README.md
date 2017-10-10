@@ -6,7 +6,7 @@ Se trata de un snake, juego arcade, de dos o más jugadores que compiten por cons
 Autores:
 Nombre y Apellidos: Alberto, Egea García  
 Correo Corporativo de la URJC: a.egeag@alumnos.urjc.es
-Cuenta GitHub: Makimoki70aaaa
+ Cuenta GitHub: Makimoki70
 
 Nombre y Apellidos: Jorge Luis, Torres Redondo  
 Correo Corporativo de la URJC: jl.torresr@alumnos.urjc.es        
