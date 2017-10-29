@@ -3,6 +3,9 @@ var cursors;
 
 var player;
 
+var score = 0;
+var scoreText;
+
 function preload() {
 	game.load.image('food', 'asset/pizza.png');
 	game.load.image('snake', 'asset/circle.png');
@@ -13,6 +16,8 @@ function create() {
 	initFood();
 	initSnake();
 	cursors = game.input.keyboard.createCursorKeys();
+
+	scoreText = game.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#FF0000' });
 }
 
 function update() {
@@ -39,4 +44,7 @@ function initSnake() {
 function eatFood(player,food) {
 	food.kill();
 	initFood();
+
+	 score += 10;
+    scoreText.text = 'Score: ' + score;
 }
