@@ -6,8 +6,17 @@
     <script src="lib/phaser.min.js"></script>
     <script src="src/food.js"></script>
     <script src="src/snake.js"></script>
+    <script src="src/script.js"></script>
+    <script src="src/util.js"></script>
 </head>
 <body>
-  <script src="src/script.js"></script>
+  <script>
+  	(function() {
+        var game = new Phaser.Game(800, 500, Phaser.AUTO, null);
+
+        game.state.add('Game', Game);
+        game.state.start('Game');
+    })();
+	</script>
 </body>
 </html>
