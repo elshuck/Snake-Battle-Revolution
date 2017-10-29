@@ -1,4 +1,5 @@
 var game = new Phaser.Game(800, 600, Phaser.CANVAS, '', { preload: preload, create: create, update: update });
+
 var cursors;
 
 var player;
@@ -6,16 +7,36 @@ var player;
 var score = 0;
 var scoreText;
 
+var music;
+var eatSound;
+
 function preload() {
 	game.load.image('food', 'asset/pizza.png');
 	game.load.image('snake', 'asset/circle.png');
+
+	game.scale.scaleMode = Phaser.ScaleManager.RESIZE;
+
+	game.load.audio('mainTheme', 'asset/MainTheme.mp3');
+	game.load.audio('eatSound', 'asset/EatSound.ogg');
 }
 
 function create() {
 	game.physics.startSystem(Phaser.Physics.ARCADE);
 	initFood();
+
+	game.scale.setResizeCallback(function () {
+		if (food.sprite.position.x > game.width || food.sprite.position.y > game.height) {
+			food.sprite.kill();
+			initFood();
+		}
+	});
+
 	initSnake();
 	cursors = game.input.keyboard.createCursorKeys();
+
+	music = game.add.audio('mainTheme');
+	music.loopFull();
+	eatSound = game.add.audio('eatSound');
 
 	scoreText = game.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#FF0000' });
 }
@@ -41,7 +62,8 @@ function initSnake() {
 }
 
 
-function eatFood(player,food) {
+function eatFood(player, food) {
+	eatSound.play();
 	food.kill();
 	initFood();
 
