@@ -32,15 +32,11 @@ Game.prototype = {
 		this.initFood();
 
     	//create player
-    	var snake = new Snake(this.game,'snake', 100, 300);
-
-
-
-    	
+    	var snake = new PlayerSnake(this.game,'snake', 100, 300);
 
 		this.game.scale.setResizeCallback(function () {
-		if (this.food.sprite.position.x > this.game.width || this.food.sprite.position.y > this.game.height) {
-			this.food.sprite.kill();
+		if (this.food.position.x > this.game.width || this.food.position.y > this.game.height) {
+			this.food.kill();
 			initFood();
 		}
 		});
