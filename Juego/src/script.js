@@ -21,7 +21,7 @@ function preload() {
 }
 
 function create() {
-	game.physics.startSystem(Phaser.Physics.ARCADE);
+	game.physics.startSystem(Phaser.Physics.P2JS);
 	initFood();
 
 	game.scale.setResizeCallback(function () {
@@ -31,7 +31,7 @@ function create() {
 		}
 	});
 
-	initSnake();
+	var snake = new Snake(this.game,'snake', 100, 300);
 	cursors = game.input.keyboard.createCursorKeys();
 
 	music = game.add.audio('mainTheme');
@@ -42,23 +42,14 @@ function create() {
 }
 
 function update() {
-	player.sprite.movimiento(player.sprite);
-	game.physics.arcade.overlap(player.sprite, food.sprite, eatFood, null, this);
+	
 }
 
 function initFood() {
 	var rx = Math.floor((Math.random() * 800) + 1);
 	var ry = Math.floor((Math.random() * 600) + 1);
 	food = new Food(game, rx, ry);
-	return food;
-	
-}
-
-function initSnake() {
-	var rx = Math.floor((Math.random() * 800) + 1);
-	var ry = Math.floor((Math.random() * 600) + 1);
-	player = new Snake(game, rx, ry);
-	return player;
+	return food;	
 }
 
 
