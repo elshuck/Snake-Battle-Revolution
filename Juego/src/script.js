@@ -32,7 +32,9 @@ Game.prototype = {
 		this.initFood();
 
     	//create player
-    	var snake = new PlayerSnake(this.game,'snake', 100, 300);
+		var snake = new PlayerSnake(this.game, 'snake', 100, 300);
+
+		//var fSnake = new FakeSnake(this.game, 'snake', 250, 400);
 
 		this.game.scale.setResizeCallback(function () {
 		if (this.food.sprite.position.x > width || this.food.sprite.position.y > height) {
@@ -48,6 +50,7 @@ Game.prototype = {
 		this.eatSound = this.game.add.audio('eatSound');
 
 		this.scoreText = this.game.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#FF0000' });
+
 		},
 
 	update: function() {
@@ -65,7 +68,6 @@ Game.prototype = {
 			var food = new Food(this.game, rx, ry);
 			return food;
 	},
-
 	
  /*
 	function eatFood(player, food) {

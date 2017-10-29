@@ -17,6 +17,8 @@ Food = function(game, x, y) {
     //set callback for when something hits the food
     this.sprite.body.onBeginContact.add(this.onBeginContact, this);
 
+    this.collisionGroup = this.game.physics.p2.createCollisionGroup();
+
     this.sprite.food = this;
 
     this.head = null;
@@ -48,6 +50,8 @@ Food.prototype = {
             this.head.snake.incrementSize();
             this.destroy();
         }
+
+        
     },
     /**
      * Destroy this food and its constraints
@@ -59,5 +63,6 @@ Food.prototype = {
             this.head.snake.food.splice(this.head.snake.food.indexOf(this), 1);
             this.head = null;
         }
-    }
+    },
+
 };
