@@ -35,11 +35,12 @@ Game.prototype = {
     	var snake = new PlayerSnake(this.game,'snake', 100, 300);
 
 		this.game.scale.setResizeCallback(function () {
-		if (this.food.position.x > this.game.width || this.food.position.y > this.game.height) {
-			this.food.kill();
+		if (this.food.sprite.position.x > width || this.food.sprite.position.y > height) {
+			this.food.sprite.kill();
 			initFood();
 		}
 		});
+		
 
 
 		this.music = this.game.add.audio('mainTheme');
@@ -59,8 +60,8 @@ Game.prototype = {
 	},
 	
 	initFood: function() {
-			var rx = Math.floor((Math.random() * this.game.width) + 1);
-			var ry = Math.floor((Math.random() * this.game.height) + 1);
+			var rx = Math.floor((Math.random() * 300) + 1);
+			var ry = Math.floor((Math.random() * 300) + 1);
 			var food = new Food(this.game, rx, ry);
 			return food;
 	},
