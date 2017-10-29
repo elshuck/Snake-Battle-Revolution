@@ -1,7 +1,7 @@
 Snake = function(game,spriteKey,x,y){
-	//Create an array of snakes in the game object and add this snake
-	this.game = game;
-	 if (!this.game.snakes) {
+    //Create an array of snakes in the game object and add this snake
+    this.game = game;
+     if (!this.game.snakes) {
         this.game.snakes = [];
     }
 
@@ -37,7 +37,23 @@ Snake = function(game,spriteKey,x,y){
 
 
     this.lastHeadPosition = new Phaser.Point(this.head.body.x,this.head.body.y);
-    this.initSections(20); 
+    this.initSections(20);
+
+    //the edge is the front body that can collide with other snakes
+    //it is locked to the head of this snake
+    this.edgeOffset = 4;
+    this.edge = this.game.add.sprite(x, y - this.edgeOffset, this.spriteKey);
+    this.edge.name = "edge";
+    this.edge.alpha = 0;
+    this.game.physics.p2.enable(this.edge, this.debug);
+    this.edge.body.setCircle(this.edgeOffset);
+
+    //constrain edge to the front of the head
+    this.edgeLock = this.game.physics.p2.createLockConstraint(
+        this.edge.body, this.head.body, [0, -this.head.width*0.5-this.edgeOffset]
+    );
+
+    this.edge.body.onBeginContact.add(this.edgeContact, this);
 
 
     this.onDestroyedCallbacks = [];
@@ -218,7 +234,13 @@ Snake.prototype = {
     /**
      * Set snake scale
      * @param  {Number} scale Scale
-    
+     */
+     setScale: function(scale) {
+        //update edge lock location with p2 physics
+        this.edgeLock.localOffsetB = [
+            0, this.game.physics.p2.pxmi(this.head.width*0.5+this.edgeOffset)
+        ];
+    },
     
     /**
      * Increment length
@@ -251,7 +273,20 @@ Snake.prototype = {
     /**
      * Called when the front of the snake (the edge) hits something
      * @param  {Phaser.Physics.P2.Body} phaserBody body it hit
-     */   
+     */
+    edgeContact: function(phaserBody) {
+        //if the edge hits another snake's section, destroy this snake
+        if (phaserBody && this.sections.indexOf(phaserBody.sprite) == -1) {
+            this.destroy();
+        }
+        //if the edge hits this snake's own section, a simple solution to avoid
+        //glitches is to move the edge to the center of the head, where it
+        //will then move back to the front because of the lock constraint
+        else if (phaserBody) {
+            this.edge.body.x = this.head.body.x;
+            this.edge.body.y = this.head.body.y;
+        }
+    },
     /**
      * Add callback for when snake is destroyed
      * @param  {Function} callback Callback function
