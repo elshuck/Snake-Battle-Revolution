@@ -1,24 +1,25 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
-    <title>Snake Battle Revolution</title>
+    <title>Slither.io Clone - Loonride Example</title>
     <script src="lib/phaser.min.js"></script>
-    <script src="src/food.js"></script>
+    <script src="src/game.js"></script>
     <script src="src/snake.js"></script>
-	<script src="src/fakeSnake.js"></script>
-    <script src="src/script.js"></script>
+    <script src="src/playerSnake.js"></script>
+    <script src="src/player2.js"></script>
+    <script src="src/food.js"></script>
+    <script src="src/borders.js"></script>
     <script src="src/util.js"></script>
-	<script src="src/player.js"></script>
 </head>
 <body>
-  <script>
-  	(function() {
+    <script>
+    (function() {
         var game = new Phaser.Game(800, 500, Phaser.AUTO, null);
 
         game.state.add('Game', Game);
         game.state.start('Game');
     })();
-	</script>
+    </script>
 </body>
 </html>

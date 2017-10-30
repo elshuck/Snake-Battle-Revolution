@@ -5,21 +5,21 @@
  * @param  {Number} x    coordinate
  * @param  {Number} y    coordinate
  */
-Food = function(game, x, y) {
+Food = function(game, x, y, score, scoreText) {
     this.game = game;
-    this.debug = false;
     this.sprite = this.game.add.sprite(x, y, 'food');
-    this.sprite.tint = 0xff0000;
+    this.sprite.scale.setTo(0.3,0.3);
 
-    this.game.physics.p2.enable(this.sprite, this.debug);
+    this.game.physics.p2.enable(this.sprite);
     this.sprite.body.clearShapes();
     this.sprite.body.addCircle(this.sprite.width * 0.5);
     //set callback for when something hits the food
     this.sprite.body.onBeginContact.add(this.onBeginContact, this);
 
-    this.collisionGroup = this.game.physics.p2.createCollisionGroup();
-
     this.sprite.food = this;
+
+    this.score = score;
+    this.scoreText = score.Text
 
     this.head = null;
     this.constraint = null;
@@ -50,8 +50,6 @@ Food.prototype = {
             this.head.snake.incrementSize();
             this.destroy();
         }
-
-        
     },
     /**
      * Destroy this food and its constraints
@@ -62,7 +60,11 @@ Food.prototype = {
             this.sprite.destroy();
             this.head.snake.food.splice(this.head.snake.food.indexOf(this), 1);
             this.head = null;
+            this.score += 10
+            if(this.score == 20){
+                this.game.destroy();
+            }
+            //this.scoreText = this.game.add.text(16, 16, 'score: ' + this.score, { fontSize: '32px', fill: '#FF0000' });
         }
     },
-
 };

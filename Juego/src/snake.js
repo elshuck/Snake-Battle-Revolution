@@ -1,43 +1,49 @@
-Snake = function(game,spriteKey,x,y){
-    //Create an array of snakes in the game object and add this snake
+/**
+ * Phaser snake
+ * @param  {Phaser.Game} game      game object
+ * @param  {String} spriteKey Phaser sprite key
+ * @param  {Number} x         coordinate
+ * @param  {Number} y         coordinate
+ */
+Snake = function(game, spriteKey, x, y) {
     this.game = game;
-     if (!this.game.snakes) {
+    //create an array of snakes in the game object and add this snake
+    if (!this.game.snakes) {
         this.game.snakes = [];
     }
-
     this.game.snakes.push(this);
+    this.debug = false;
     this.snakeLength = 0;
     this.spriteKey = spriteKey;
 
-    //Various quantities that can be changed
+    //various quantities that can be changed
     this.scale = 0.6;
     this.speed = 130;
 
-
-    //Inicialize groups and arrays
+    //initialize groups and arrays
     this.collisionGroup = this.game.physics.p2.createCollisionGroup();
     this.sections = [];
-
-    //the head path is an array of points that the ehad of the snake had travelled through
+    //the head path is an array of points that the head of the snake has
+    //traveled through
     this.headPath = [];
     this.food = [];
 
-    this.preferredDistance = 17*this.scale;
+    this.preferredDistance = 17 * this.scale;
     this.queuedSections = 0;
 
+    //initialize the shadow
     this.sectionGroup = this.game.add.group();
-    //add the head of the snake = this;
-
-     //add the head of the snake
+    //add the head of the snake
     this.head = this.addSectionAtPosition(x,y);
     this.head.name = "head";
     this.head.snake = this;
+
     this.head.body.velocity.y = -this.speed;
     this.head.body.velocity.x = 0;
 
-
-    this.lastHeadPosition = new Phaser.Point(this.head.body.x,this.head.body.y);
-    this.initSections(20);
+    this.lastHeadPosition = new Phaser.Point(this.head.body.x, this.head.body.y);
+    //add 30 sections behind the head
+    this.initSections(30);    
 
     //the edge is the front body that can collide with other snakes
     //it is locked to the head of this snake
@@ -54,7 +60,6 @@ Snake = function(game,spriteKey,x,y){
     );
 
     this.edge.body.onBeginContact.add(this.edgeContact, this);
-
 
     this.onDestroyedCallbacks = [];
     this.onDestroyedContexts = [];
@@ -75,7 +80,6 @@ Snake.prototype = {
             //add a point to the head path so that the section stays there
             this.headPath.push(new Phaser.Point(x,y));
         }
-
     },
     /**
      * Add a section to the snake at a given position
@@ -116,7 +120,6 @@ Snake.prototype = {
      */
     update: function() {
         var speed = this.speed;
-
 
         //remove the last element of an array that contains points which
         //the head traveled through
@@ -177,6 +180,8 @@ Snake.prototype = {
             this.lastHeadPosition = new Phaser.Point(this.head.body.x, this.head.body.y);
             this.onCycleComplete();
         }
+
+        //update the eyes and the shadow below the snake
     },
     /**
      * Find in the headPath array which point the next section of the snake
@@ -235,18 +240,37 @@ Snake.prototype = {
      * Set snake scale
      * @param  {Number} scale Scale
      */
-     setScale: function(scale) {
+    setScale: function(scale) {
+        this.scale = scale;
+        this.preferredDistance = 17 * this.scale;
+
         //update edge lock location with p2 physics
         this.edgeLock.localOffsetB = [
             0, this.game.physics.p2.pxmi(this.head.width*0.5+this.edgeOffset)
         ];
+
+        //scale sections and their bodies
+        for (var i = 0 ; i < this.sections.length ; i++) {
+            var sec = this.sections[i];
+            sec.scale.setTo(this.scale);
+            sec.body.data.shapes[0].radius = this.game.physics.p2.pxm(sec.width*0.5);
+        }
     },
-    
+
     /**
-     * Increment length
+     * Set snake speed
+     * @param  {Number} speed Speed
+     */
+    setSpeed: function(speed) {
+        this.speed = speed;
+    },
+    /**
+     * Increment length and speed
      */
     incrementSize: function() {
         this.addSectionsAfterLast(1);
+        this.setScale(this.scale * 1.);
+        this.setSpeed(this.speed * 1.08);
     },
     /**
      * Destroy the snake
@@ -256,8 +280,11 @@ Snake.prototype = {
         //remove constraints
         this.game.physics.p2.removeConstraint(this.edgeLock);
         this.edge.destroy();
-
-
+        //destroy food that is constrained to the snake head
+        for (var i = this.food.length - 1 ; i >= 0 ; i--) {
+            this.food[i].destroy();
+        }
+        //destroy everything else
         this.sections.forEach(function(sec, index) {
             sec.destroy();
         });
@@ -278,6 +305,7 @@ Snake.prototype = {
         //if the edge hits another snake's section, destroy this snake
         if (phaserBody && this.sections.indexOf(phaserBody.sprite) == -1) {
             this.destroy();
+            this.game.destroy();
         }
         //if the edge hits this snake's own section, a simple solution to avoid
         //glitches is to move the edge to the center of the head, where it
