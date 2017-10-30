@@ -16,3 +16,7 @@ Nombre y Apellidos: Gabriel, Muñoz Borchers <br>
 Correo Corporativo de la URJC: g.munozbo@alumnos.urjc.es <br>
 Cuenta GitHub: gabrielmubo <br>
 
+Dinamica del Juego
+![Captura del Juego](https://github.com/elshuck/Snake-Battle-Revolution/blob/master/Partida.png "Captura")
+
+Hay dos jugadores uno se mueve con las flechas y otro con awsd y tienen que conseguir la máxima puntuación posible comiendo pizza, cada trozo de pizza aumenta su velocidad y si colisionan o uno alcanza los 100 puntos se termina el juego.
