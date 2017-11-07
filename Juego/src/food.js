@@ -18,9 +18,6 @@ Food = function(game, x, y, score, scoreText) {
 
     this.sprite.food = this;
 
-    this.score = score;
-    this.scoreText = score.Text
-
     this.head = null;
     this.constraint = null;
 }
@@ -56,15 +53,14 @@ Food.prototype = {
      */
     destroy: function() {
         if (this.head) {
-            this.game.physics.p2.removeConstraint(this.constraint);
+        	this.game.physics.p2.removeConstraint(this.constraint);
+        	this.game.count++;
+        	this.game.score.setText('score: ' + this.game.count);
+
+        	this.head.snake.food.splice(this.head.snake.food.indexOf(this), 1);
+        	this.head = null;
             this.sprite.destroy();
-            this.head.snake.food.splice(this.head.snake.food.indexOf(this), 1);
-            this.head = null;
-            this.score += 10
-            if(this.score == 20){
-                this.game.destroy();
-            }
-            //this.scoreText = this.game.add.text(16, 16, 'score: ' + this.score, { fontSize: '32px', fill: '#FF0000' });
+            
         }
     },
 };

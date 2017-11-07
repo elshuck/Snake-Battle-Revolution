@@ -1,6 +1,6 @@
 Game = function(game) {
-    this.score = 0;
-    this.scoreText;
+	this.count = 0;
+    this.score;
 
     this.music;
     this.eatSound; 
@@ -65,7 +65,11 @@ Game.prototype = {
             
             //callback for when a snake is destroyed
             snake.addDestroyedCallback(this.snakeDestroyed, this);
+
+            
         }
+
+        this.score = this.game.add.text(16, 16, 'score: ' + this.count, { fontSize: '32px', fill: '#FF0000' });
     },
     /**
      * Main update loop
@@ -80,7 +84,7 @@ Game.prototype = {
             f.food.update();
         }
 
-        this.scoreText = this.game.add.text(16, 16, 'score: ' + this.score, { fontSize: '32px', fill: '#FF0000' });
+        
     },
     /**
      * Create a piece of food at a point
@@ -89,7 +93,7 @@ Game.prototype = {
      * @return {Food}   food object created
      */
     initFood: function(x, y) {
-        var f = new Food(this.game, x, y, this.score, this.scoreText);
+        var f = new Food(this, x, y);
         f.sprite.body.setCollisionGroup(this.foodCollisionGroup);
         this.foodGroup.add(f.sprite);
         f.sprite.body.collides([this.snakeHeadCollisionGroup]);

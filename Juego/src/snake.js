@@ -282,7 +282,7 @@ Snake.prototype = {
         this.edge.destroy();
         //destroy food that is constrained to the snake head
         for (var i = this.food.length - 1 ; i >= 0 ; i--) {
-            this.food[i].destroy();
+        	this.food[i].destroy();
         }
         //destroy everything else
         this.sections.forEach(function(sec, index) {
@@ -305,7 +305,8 @@ Snake.prototype = {
         //if the edge hits another snake's section, destroy this snake
         if (phaserBody && this.sections.indexOf(phaserBody.sprite) == -1) {
             this.destroy();
-            this.game.destroy();
+        	//this.game.destroy();
+            window.document.location.href = 'Ranking.html';
         }
         //if the edge hits this snake's own section, a simple solution to avoid
         //glitches is to move the edge to the center of the head, where it
