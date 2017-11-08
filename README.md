@@ -17,19 +17,19 @@ Correo Corporativo de la URJC: g.munozbo@alumnos.urjc.es <br>
 Cuenta GitHub: gabrielmubo <br>
 
 Inicio del Juego
-![Inicio del Juego](https://github.com/elshuck/Snake-Battle-Revolution/blob/master/Diagramas y fotos del juego/Inicio.png "Captura")
+![Inicio del Juego](https://github.com/elshuck/Snake-Battle-Revolution/blob/master/Diagramas%20y%20fotos%20del%20juego/Inicio.png "Captura")
 Se muestra la pantalla de inicio del juego.
 
 Dinamica del Juego
-![Captura del Juego](https://github.com/elshuck/Snake-Battle-Revolution/blob/master/Diagramas y fotos del juego/Partida.png "Captura")
+![Captura del Juego](https://github.com/elshuck/Snake-Battle-Revolution/blob/master/Diagramas%20y%20fotos%20del%20juego/Partida.png "Captura")
 
 Hay dos jugadores uno se mueve con las flechas y otro con awsd y tienen que conseguir la máxima puntuación posible comiendo pizza, cada trozo de pizza aumenta su velocidad y si colisionan o uno alcanza los 100 puntos se termina el juego.
 
 Ranking del Juego
-![Ranking del Juego](https://github.com/elshuck/Snake-Battle-Revolution/blob/master/Diagramas y fotos del juego/Ranking.png "Captura")
+![Ranking del Juego](https://github.com/elshuck/Snake-Battle-Revolution/blob/master/Diagramas%20y%20fotos%20del%20juego/Ranking.png "Captura")
 Muestra las puntuaciones de los jugadores como no está implementado lo del servidor simplemente está prehecho
 
 Diagrama del Juego
-![Captura del Juego](https://github.com/elshuck/Snake-Battle-Revolution/blob/master/Diagramas y fotos del juego/Diagrama.png "Captura")
+![Captura del Juego](https://github.com/elshuck/Snake-Battle-Revolution/blob/master/Diagramas%20y%20fotos%20del%20juego/Diagrama.png "Captura")
 Muestra cómo funciona el juego
 
