@@ -6,3 +6,24 @@ body
     background-position: center;
     background-size: cover;
 }
+
+.btn {
+  -webkit-border-radius: 9;
+  -moz-border-radius: 9;
+  border-radius: 9px;
+  font-family: Arial;
+  color: #940f25;
+  font-size: 53px;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+}
+
+.btn:hover {
+  background: #000000;
+  background-image: -webkit-linear-gradient(top, #000000, #7a767a);
+  background-image: -moz-linear-gradient(top, #000000, #7a767a);
+  background-image: -ms-linear-gradient(top, #000000, #7a767a);
+  background-image: -o-linear-gradient(top, #000000, #7a767a);
+  background-image: linear-gradient(to bottom, #000000, #7a767a);
+  text-decoration: none;
+}
