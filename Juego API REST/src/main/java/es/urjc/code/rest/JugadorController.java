@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class JugadorController {
-    ArrayList<Jugador> jugadores = new ArrayList<Jugador>();
+    ArrayList<Jugador> jugadores = new ArrayList<>();
     
         
     @GetMapping("/puntuaciones")
@@ -24,17 +24,8 @@ public class JugadorController {
     }
     
     public void ordenarJugadores(){
-        int auxiliar;
-        int auxiliar2;
-        for(int i=0; i<jugadores.size();i++){
-            for(int j=0; j<jugadores.size(); i++){
-                auxiliar = jugadores.get(i).getPuntuacion();  
-                auxiliar2 = jugadores.get(i+1).getPuntuacion();
-                if(auxiliar2 > auxiliar){
-                    jugadores[i] = jugadores[i+1];
-                }
-            }
-        }
+        Comparator<Integer> comparador = Collections.reverseOrder();
+        Collections.sort(arrayListInt, comparador);
         
     }
     
