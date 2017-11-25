@@ -276,6 +276,17 @@ Snake.prototype = {
      * Destroy the snake
      */
     destroy: function() {
+        jquery.ajax({
+method:"POST",
+url:"http://localhost:8080/setPuntuacion",
+data:JSONStringfy({name:nombrejugador,puntuacion:puntuacionjugador})
+
+
+}).done(function(data){
+
+
+
+});
         this.game.snakes.splice(this.game.snakes.indexOf(this), 1);
         //remove constraints
         this.game.physics.p2.removeConstraint(this.edgeLock);
