@@ -17,15 +17,25 @@ public class JugadorController {
     
         
     @GetMapping(value="/puntuaciones")
-    public ArrayList<Jugador> getJugadores() {
+    public void getJugadores() {
         ordenarJugadores();
-        return jugadores;
+    }
+    
+    @GetMapping(value="/puntuacion/{id}")
+    public int getPuntuacion(@PathVariable int id) {
+        return jugadores.get(id).getPuntuacion();
     }
         
     @PostMapping(value="/setJugador")
     @ResponseStatus(HttpStatus.CREATED)
     public void setJugador(@RequestBody Jugador j){
         jugadores.add(j);
+    }
+    
+    @PostMapping(value="/setPuntuacion/{id}")
+    @ResponseStatus(HttpStatus.CREATED)
+    public void setPuntuacion(@RequestBody int p, @PathVariable int id){
+        jugadores.get(id).setPuntuacion(p);
     }
     
     @GetMapping(value="/getNombre/{id}")

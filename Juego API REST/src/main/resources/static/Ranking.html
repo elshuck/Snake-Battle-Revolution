@@ -1,22 +1,28 @@
 <html>
-<head><title>RANKING SNAKE BATTLE REVOLUTION</title></head>
-<body>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    
+    <title>RANKING SNAKE BATTLE REVOLUTION</title>
+</head>
+<body background="asset/fondologin.jpg">
  
-<h1>TOP puntuaciones</h1>
- 
-<table>
- 
-<tr>
-  <td>1º</td>
-  <td>770</td>
-  
-</tr>
+<h1 align="center">TOP puntuaciones</h1>
+<table align="center">
  
 <tr>
-  <td>2º</td>
-  <td>590</td>
+  <td>1.</td>
+  <td id="n1">
+      <script>
+        $.ajax({
+            method: 'GET',
+            url:"http://localhost:8080/puntuacion/0"
+        }).done(function(data){
+            document.getElementById("n1").innerHTML = data;
+        });
+      </script>
+  </td>
 </tr>
 </table>
- 
+
 </body>
 </html>

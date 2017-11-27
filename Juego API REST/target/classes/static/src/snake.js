@@ -279,15 +279,6 @@ Snake.prototype = {
      * Destroy the snake
      */
     destroy: function() {
-        $.ajax({
-            method:"POST",
-            url:"http://localhost:8080/setPuntuacion",
-            data:JSONStringfy({name:this.name,puntuacion:this.score})
-        }).done(function(data){
-
-
-
-        });
         this.game.snakes.splice(this.game.snakes.indexOf(this), 1);
         //remove constraints
         this.game.physics.p2.removeConstraint(this.edgeLock);
@@ -308,6 +299,14 @@ Snake.prototype = {
                     this.onDestroyedContexts[i], [this]);
             }
         }
+        $.ajax({
+            method: 'POST',
+            url:"http://localhost:8080/setPuntuacion/0",
+            data: this.score
+        }).done(function(){
+           window.location.href = "Ranking.html";
+        });
+        
     },
     /**
      * Called when the front of the snake (the edge) hits something
