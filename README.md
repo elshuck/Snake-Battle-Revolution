@@ -25,6 +25,9 @@ Diagrama de navegación
 ![Inicio del Juego](https://github.com/elshuck/Snake-Battle-Revolution/blob/master/Diagramas%20y%20fotos%20del%20juego/Inicio.png "Captura")
 Se muestra la pantalla de inicio del juego.
 
+![Inicio del Juego](https://github.com/elshuck/Snake-Battle-Revolution/blob/master/Diagramas%20y%20fotos%20del%20juego/Login.jpg "Captura")
+Aquí haces el login con un nombre de usuario.
+
 
 ![Captura del Juego](https://github.com/elshuck/Snake-Battle-Revolution/blob/master/Diagramas%20y%20fotos%20del%20juego/Partida.png "Captura")
 Este es el juego en si, sigue hasta que se termina.
