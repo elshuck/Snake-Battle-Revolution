@@ -34,7 +34,7 @@ Este es el juego en si, sigue hasta que se termina.
 Muestra las puntuaciones de los jugadores.
 
 Diagrama del Clases
-![Captura del Juego](https://github.com/elshuck/Snake-Battle-Revolution/blob/master/Diagramas%20y%20fotos%20del%20juego/Diagramadeclases.png "Captura")
+![Captura del Juego](https://github.com/elshuck/Snake-Battle-Revolution/blob/master/Diagramas%20y%20fotos%20del%20juego/Diagramadeclases.jpg "Captura")
 Diagrama de clases correspondientes a java y API Rest.
 
 Instrucciones de ejecución.
