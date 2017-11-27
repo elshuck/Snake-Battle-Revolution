@@ -28,15 +28,4 @@ public  class Jugador {
 	public void setPuntuacion(int puntuacion) {
 		this.puntuacion = puntuacion;
 	}
-        
-        @Override
-        public int compareTo(Jugador j) {
-            if (puntuacion < j.puntuacion) {
-                return -1;
-            }
-            if (puntuacion > j.puntuacion) {
-                return 1;
-            }
-            return 0;
-        }
 }

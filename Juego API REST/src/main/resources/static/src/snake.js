@@ -180,8 +180,6 @@ Snake.prototype = {
             this.lastHeadPosition = new Phaser.Point(this.head.body.x, this.head.body.y);
             this.onCycleComplete();
         }
-
-        //update the eyes and the shadow below the snake
     },
     /**
      * Find in the headPath array which point the next section of the snake
@@ -270,23 +268,26 @@ Snake.prototype = {
     incrementSize: function() {
         this.addSectionsAfterLast(1);
         this.setScale(this.scale * 1.);
-        this.setSpeed(this.speed * 1.08);
+        this.setSpeed(this.speed * 1.0008);
+    },
+    incrementScore: function() {
+        this.score++;
+        this.game.count++;
+        this.scoreText.setText('score: ' + this.score);
     },
     /**
      * Destroy the snake
      */
     destroy: function() {
-        jquery.ajax({
-method:"POST",
-url:"http://localhost:8080/setPuntuacion",
-data:JSONStringfy({name:nombrejugador,puntuacion:puntuacionjugador})
-
-
-}).done(function(data){
+        $.ajax({
+            method:"POST",
+            url:"http://localhost:8080/setPuntuacion",
+            data:JSONStringfy({name:this.name,puntuacion:this.score})
+        }).done(function(data){
 
 
 
-});
+        });
         this.game.snakes.splice(this.game.snakes.indexOf(this), 1);
         //remove constraints
         this.game.physics.p2.removeConstraint(this.edgeLock);

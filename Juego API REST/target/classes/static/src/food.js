@@ -45,7 +45,9 @@ Food.prototype = {
         if (this.head && Math.round(this.head.body.x) == Math.round(this.sprite.body.x) &&
         Math.round(this.head.body.y) == Math.round(this.sprite.body.y)) {
             this.head.snake.incrementSize();
+            this.head.snake.incrementScore();
             this.destroy();
+            
         }
     },
     /**
@@ -54,9 +56,6 @@ Food.prototype = {
     destroy: function() {
         if (this.head) {
         	this.game.physics.p2.removeConstraint(this.constraint);
-        	this.game.count++;
-        	this.game.score.setText('score: ' + this.game.count);
-
         	this.head.snake.food.splice(this.head.snake.food.indexOf(this), 1);
         	this.head = null;
             this.sprite.destroy();

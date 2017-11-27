@@ -1,6 +1,4 @@
 Game = function(game) {
-	this.count = 0;
-    this.score;
 
     this.music;
     this.eatSound; 
@@ -55,7 +53,10 @@ Game.prototype = {
         //create player
         var snake = new PlayerSnake(this.game, 'snake', 400, 300);
         
-        var snake2 = new PlayerSnake2(this.game, 'snake', 600, 500);
+        var snake2 = new Snake(this.game, 'snake', 600, 600);
+        snake2.head.body.velocity.x = 0;
+        snake2.head.body.velocity.y = 0;
+        
 
         //initialize snake groups and collision
         for (var i = 0 ; i < this.game.snakes.length ; i++) {
@@ -68,8 +69,6 @@ Game.prototype = {
 
             
         }
-
-        this.score = this.game.add.text(16, 16, 'score: ' + this.count, { fontSize: '32px', fill: '#FF0000' });
     },
     /**
      * Main update loop

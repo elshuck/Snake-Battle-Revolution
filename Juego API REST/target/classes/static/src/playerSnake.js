@@ -8,6 +8,21 @@
 PlayerSnake = function(game, spriteKey, x, y) {
     Snake.call(this, game, spriteKey, x, y);
     this.cursors = game.input.keyboard.createCursorKeys();
+    this.score = 0;
+    this.scoreText = this.game.add.text(16, 16, 'score: ' + this.score, { fontSize: '32px', fill: '#FF0000' });
+    this.name;
+    $.ajax({
+        method:"GET",
+        url:"http://localhost:8080/getNombre/0"
+        }).done(function(data){
+            this.name = data;
+        });
+    this.prototype = Object.create(Snake.prototype);
+    /*this.prototype.incrementScore = function() {
+        this.score++;
+        this.game.count++;
+        this.game.score.setText('score: ' + this.game.count);
+}*/
 }
 
 /**
@@ -46,3 +61,4 @@ PlayerSnake.prototype.update = function() {
     //call the original snake update method
     this.tempUpdate();
 }
+

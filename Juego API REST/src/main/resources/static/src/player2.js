@@ -16,6 +16,19 @@ PlayerSnake2 = function(game, spriteKey, x, y) {
     this.leftButton = this.game.input.keyboard.addKey(Phaser.Keyboard.A);
 
     this.rightButton = this.game.input.keyboard.addKey(Phaser.Keyboard.D);
+
+    this.score = 0;
+    this.name;
+    $.ajax({
+        method:"GET",
+        url:"http://localhost:8080/getNombre/1"
+        }).done(function(data){
+            this.name = data;
+        });
+    this.prototype = Object.create(Snake.prototype);
+    this.prototype.incrementScore = function() {
+        this.score++;
+    }
 }
 
 /**
