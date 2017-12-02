@@ -2,6 +2,7 @@ package es.urjc.code.rest;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,42 +14,27 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class JugadorController {
-    ArrayList<Jugador> jugadores = new ArrayList<>();
+    HashMap<String, Jugador> jugadores = new HashMap<String, Jugador>();
     
-        
-    @GetMapping(value="/puntuaciones")
-    public void getJugadores() {
-        ordenarJugadores();
-    }
-    
-    @GetMapping(value="/puntuacion/{id}")
-    public int getPuntuacion(@PathVariable int id) {
+    @GetMapping(value="/getPuntuacion/{id}")
+    public int getPuntuacion(@PathVariable String id) {
         return jugadores.get(id).getPuntuacion();
     }
         
     @PostMapping(value="/setJugador")
     @ResponseStatus(HttpStatus.CREATED)
     public void setJugador(@RequestBody Jugador j){
-        jugadores.add(j);
+        jugadores.put(j.getName(), j);
     }
     
-    @PostMapping(value="/setPuntuacion/{id}")
+    @PostMapping(value="/setPuntuacion")
     @ResponseStatus(HttpStatus.CREATED)
-    public void setPuntuacion(@RequestBody int p, @PathVariable int id){
-        jugadores.get(id).setPuntuacion(p);
-    }
-    
-    @GetMapping(value="/getNombre/{id}")
-    public String getNombre(@PathVariable int id){
-        return jugadores.get(id).getName();
-    }
-   
-   public void ordenarJugadores(){
-        Collections.sort(jugadores, (Jugador j1, Jugador j2) -> new Integer(j2.getPuntuacion()).compareTo(new Integer(j1.getPuntuacion())));        
+    public void setPuntuacion(@RequestBody Jugador j){
+        jugadores.get(j.getName()).setPuntuacion(j.getPuntuacion());
     }
     
     public void meterJugadores(){
         Jugador a = new Jugador("pepe",0);
-        jugadores.add(a);
+        jugadores.put(a.getName(), a);
     }
 }

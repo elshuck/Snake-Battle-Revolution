@@ -13,9 +13,11 @@
   <td>1.</td>
   <td id="n1">
       <script>
+          var datos = window.location.href.split('?');
+          console.log(datos[1]);
         $.ajax({
             method: 'GET',
-            url:"http://localhost:8080/puntuacion/0"
+            url:"http://localhost:8080/getPuntuacion/datos[1]"
         }).done(function(data){
             document.getElementById("n1").innerHTML = data;
         });

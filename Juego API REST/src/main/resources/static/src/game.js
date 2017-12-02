@@ -1,5 +1,4 @@
 Game = function(game) {
-
     this.music;
     this.eatSound; 
 }
@@ -20,8 +19,6 @@ Game.prototype = {
     create: function() {
         var width = this.game.width;
         var height = this.game.height;
-
-
         this.music = this.game.add.audio('mainTheme');
         this.music.loopFull();
         this.eatSound = this.game.add.audio('eatSound');

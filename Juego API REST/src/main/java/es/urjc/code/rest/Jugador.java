@@ -28,4 +28,13 @@ public  class Jugador {
 	public void setPuntuacion(int puntuacion) {
 		this.puntuacion = puntuacion;
 	}
+        
+        public boolean equals(Object o){ 
+            Jugador j1 = (Jugador)o; 
+            if(j1.getName()==this.getName()){ 
+            //si tienen el mismo nombre es que son el mismo objeto 
+                return true; 
+            } 
+            return false; 
+        } 
 }

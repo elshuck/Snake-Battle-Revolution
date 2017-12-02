@@ -272,14 +272,19 @@ Snake.prototype = {
     },
     incrementScore: function() {
         this.score++;
-        this.game.count++;
         this.scoreText.setText('score: ' + this.score);
     },
     /**
      * Destroy the snake
      */
     destroy: function() {
-        this.game.snakes.splice(this.game.snakes.indexOf(this), 1);
+        
+        $.ajax({
+            method: 'POST',
+            url:"http://localhost:8080/setPuntuacion",
+            data: JSON.stringify({ name: this.head.name, puntuacion: this.head.score}),
+        }).done(function(){
+           this.game.snakes.splice(this.game.snakes.indexOf(this), 1);
         //remove constraints
         this.game.physics.p2.removeConstraint(this.edgeLock);
         this.edge.destroy();
@@ -299,12 +304,7 @@ Snake.prototype = {
                     this.onDestroyedContexts[i], [this]);
             }
         }
-        $.ajax({
-            method: 'POST',
-            url:"http://localhost:8080/setPuntuacion/0",
-            data: this.score
-        }).done(function(){
-           window.location.href = "Ranking.html";
+           window.location.href = "Ranking.html?" + this.head.name;
         });
         
     },
@@ -317,7 +317,6 @@ Snake.prototype = {
         if (phaserBody && this.sections.indexOf(phaserBody.sprite) == -1) {
             this.destroy();
         	//this.game.destroy();
-            window.document.location.href = 'Ranking.html';
         }
         //if the edge hits this snake's own section, a simple solution to avoid
         //glitches is to move the edge to the center of the head, where it
