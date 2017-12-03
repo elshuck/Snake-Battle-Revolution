@@ -13,13 +13,14 @@
   <td>1.</td>
   <td id="n1">
       <script>
-          var datos = window.location.href.split('?');
-          console.log(datos[1]);
+        var datos = window.location.href.split('?');
+        console.log(datos[1]);
         $.ajax({
             method: 'GET',
-            url:"http://localhost:8080/getPuntuacion/datos[1]"
+            url:"http://localhost:8080/getPuntuacion/" + datos[1]
         }).done(function(data){
-            document.getElementById("n1").innerHTML = data;
+            console.log(data);
+            $("#n1").html(datos[1] + ": " +data);
         });
       </script>
   </td>

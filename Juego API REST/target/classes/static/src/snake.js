@@ -278,34 +278,39 @@ Snake.prototype = {
      * Destroy the snake
      */
     destroy: function() {
-        
+        console.log(this.name);
         $.ajax({
             method: 'POST',
             url:"http://localhost:8080/setPuntuacion",
-            data: JSON.stringify({ name: this.head.name, puntuacion: this.head.score}),
+            data: JSON.stringify({ name: this.head.snake.name, puntuacion: this.head.snake.score}),
+            contentType:"application/json",
+            Accept:"application/json"
         }).done(function(){
-           this.game.snakes.splice(this.game.snakes.indexOf(this), 1);
-        //remove constraints
-        this.game.physics.p2.removeConstraint(this.edgeLock);
-        this.edge.destroy();
-        //destroy food that is constrained to the snake head
-        for (var i = this.food.length - 1 ; i >= 0 ; i--) {
+           var datos = window.location.href.split('?');
+           window.location.href = "Ranking.html?" + datos[1];
+        });
+         
+           /*this.game.snakes.splice(this.game.snakes.indexOf(this), 1);
+           //remove constraints
+           this.game.physics.p2.removeConstraint(this.edgeLock);
+           this.edge.destroy();
+           //destroy food that is constrained to the snake head
+           for (var i = this.food.length - 1 ; i >= 0 ; i--) {
         	this.food[i].destroy();
-        }
-        //destroy everything else
-        this.sections.forEach(function(sec, index) {
-            sec.destroy();
-        });
+           }
+           //destroy everything else
+           this.sections.forEach(function(sec, index) {
+                sec.destroy();
+           });
 
-        //call this snake's destruction callbacks
-        for (var i = 0 ; i < this.onDestroyedCallbacks.length ; i++) {
-            if (typeof this.onDestroyedCallbacks[i] == "function") {
-                this.onDestroyedCallbacks[i].apply(
-                    this.onDestroyedContexts[i], [this]);
-            }
-        }
-           window.location.href = "Ranking.html?" + this.head.name;
-        });
+           //call this snake's destruction callbacks
+           for (var i = 0 ; i < this.onDestroyedCallbacks.length ; i++) {
+                if (typeof this.onDestroyedCallbacks[i] == "function") {
+                    this.onDestroyedCallbacks[i].apply(
+                        this.onDestroyedContexts[i], [this]);
+                }
+            }*/
+        
         
     },
     /**
