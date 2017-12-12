@@ -12,7 +12,15 @@ PlayerSnake = function(game, spriteKey, x, y) {
     this.scoreText = this.game.add.text(16, 16, 'score: ' + this.score, { fontSize: '32px', fill: '#FF0000' });
     this.datos = window.location.href.split('?');
     this.name = this.datos[1];
+
+    this.incrementScore= function() {
+        this.score++;
+        this.scoreText.setText('score: ' + this.score);
+    };
+
     this.prototype = Object.create(Snake.prototype);
+
+    
     
 }
 
@@ -52,4 +60,6 @@ PlayerSnake.prototype.update = function() {
     //call the original snake update method
     this.tempUpdate();
 }
+
+
 

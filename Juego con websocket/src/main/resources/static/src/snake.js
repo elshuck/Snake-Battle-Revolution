@@ -270,10 +270,12 @@ Snake.prototype = {
         this.setScale(this.scale * 1.);
         this.setSpeed(this.speed * 1.0008);
     },
-    incrementScore: function() {
+
+    /*incrementScore: function() {
         this.score++;
         this.scoreText.setText('score: ' + this.score);
-    },
+    },*/
+    
     /**
      * Destroy the snake
      */
