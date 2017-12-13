@@ -79,7 +79,7 @@ Game.prototype = {
             var f = this.foodGroup.children[i];
             f.food.update();
         }
-
+        
         
     },
     /**
