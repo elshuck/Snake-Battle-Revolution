@@ -45,4 +45,6 @@ Instrucciones de ejecución.
 Hemos usado IDE Netbeans 8.2, que es un software gratuito. Recomendamos usarlo para poder ejecutar y compilar nuestra práctica.
 Se debe iniciar el servidor desde Netbeans , luego hay que cargar el siguiente URL:"localhost:8080/inicio.html" y  esto debería de ser suficiente para poder jugar.
 
+El video se encuentra en https://www.youtube.com/watch?v=8qi51juTsT4&feature=youtu.be
 
+Iniciamos una sesión de websocket por cada persona que entra, estas sesiones entran en un mapa concurrente. Una vez hay dos personas en la partida empieza el juego. Cuando termina el juego se pasan las puntuaciones por API rest. 
